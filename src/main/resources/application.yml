@@ -7,7 +7,7 @@ spring:
       INDENT_OUTPUT: true
   data:
     mongodb:
-      database: score-service
+      database: score-service-local
 server:
   port: 8080
   compression:
