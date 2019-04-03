@@ -4,6 +4,8 @@ import com.pya.scoreservice.usecase.delete.DeleteScoreService;
 import com.pya.scoreservice.usecase.find.FindScoreBySaleService;
 import com.pya.scoreservice.usecase.find.FindScoresByStoreService;
 import com.pya.scoreservice.usecase.save.SaveScoreService;
+import java.util.List;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -37,25 +40,28 @@ public class ScoreController {
   }
 
   @PostMapping
-  public ResponseEntity<?> saveScore(SaveScoreHttpCommand cmd) {
+  public ResponseEntity<ScoreSummary> saveScore(SaveScoreHttpCommand cmd) {
 
     return null;
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<?> deleteScore(@PathVariable String scoreId) {
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public ResponseEntity<Void> deleteScore(@PathVariable String scoreId) {
 
     return null;
   }
 
   @GetMapping
-  public ResponseEntity<?> findBySaleId(@RequestParam("saleId") String saleId) {
+  @RequestMapping(params = "saleId")
+  public ResponseEntity<ScoreSummary> findBySaleId(@RequestParam("saleId") String saleId) {
 
     return null;
   }
 
   @GetMapping
-  public ResponseEntity<?> findByStoreIdInRange(
+  @RequestMapping(params = { "saleId", "timeFrom", "timeTo" })
+  public ResponseEntity<List<ScoreSummary>> findByStoreIdInRange(
       @RequestParam("saleId") String saleId,
       @RequestParam("timeFrom") long from,
       @RequestParam("timeTo") long to) {
