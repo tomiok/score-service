@@ -48,7 +48,7 @@ public class ScoreController {
 
   @DeleteMapping("/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public ResponseEntity<Void> deleteScore(@PathVariable String scoreId) {
+  public ResponseEntity<Void> deleteScore(@PathVariable("id") String scoreId) {
 
     return null;
   }
