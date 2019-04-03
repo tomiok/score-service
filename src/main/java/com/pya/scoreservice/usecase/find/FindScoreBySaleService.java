@@ -7,6 +7,13 @@ import lombok.Setter;
 
 public interface FindScoreBySaleService {
 
+  /**
+   * Find a Score given a sale id. Only one opinion can be sent within a sale.
+   *
+   * @param request The sale id to fetch the opinion.
+   *
+   * @return The {@link Score} with that sale identifier.
+   */
   Score findScoreBySale(Request request);
 
   @Getter

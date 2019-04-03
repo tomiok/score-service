@@ -6,8 +6,13 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-public interface FindScoresByStore {
+public interface FindScoresByStoreService {
 
+  /**
+   * @param request The store id and the dates in range.
+   *
+   * @return A list of the scores in that range for that store identifier.
+   */
   List<Score> findScoresByStoreInRange(Request request);
 
   @Getter
@@ -16,8 +21,8 @@ public interface FindScoresByStore {
 
     private String storeId;
 
-    private LocalDateTime commentedAt;
+    private LocalDateTime commentedAtFrom;
 
-
+    private LocalDateTime commentedAtTo;
   }
 }
