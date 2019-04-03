@@ -12,7 +12,7 @@
 	<artifactId>score-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>score-service</name>
-	<description>Demo project for Spring Boot</description>
+	<description>score service to save all the opinions for the sales</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -67,6 +67,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
 	</dependencies>
 
 	<dependencyManagement>

@@ -3,6 +3,7 @@ package com.pya.scoreservice.web.apispec;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
@@ -18,8 +19,10 @@ public class SwaggerConfig {
   public Docket api() {
     return new Docket(DocumentationType.SWAGGER_2)
         .select()
-        .apis(RequestHandlerSelectors.basePackage("com.pya.scoreservice.web"))
-        .build().apiInfo(apiInfo());
+        .apis(RequestHandlerSelectors.any())
+        .paths(PathSelectors.ant("/scores/**"))
+        .build()
+        .apiInfo(apiInfo());
   }
 
   private ApiInfo apiInfo() {
