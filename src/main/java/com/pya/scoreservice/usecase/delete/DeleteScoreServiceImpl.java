@@ -7,7 +7,7 @@ public class DeleteScoreServiceImpl implements DeleteScoreService {
 
   private final ScoreRepository scoreRepository;
 
-  public DeleteScoreServiceImpl(final ScoreRepository scoreRepository) {
+  DeleteScoreServiceImpl(final ScoreRepository scoreRepository) {
     this.scoreRepository = scoreRepository;
   }
 
