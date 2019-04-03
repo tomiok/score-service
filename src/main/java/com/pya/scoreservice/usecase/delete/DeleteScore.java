@@ -1,11 +1,17 @@
 package com.pya.scoreservice.usecase.delete;
 
+import com.pya.scoreservice.model.Score;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 public interface DeleteScore {
 
+  /**
+   * Logic delete for the {@link Score} - put the flag {@link Score#active} to false.
+   *
+   * @param request The score id.
+   */
   void deleteById(Request request);
 
   @Getter
