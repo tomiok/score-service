@@ -3,6 +3,7 @@ package com.pya.scoreservice.usecase.find;
 import com.pya.scoreservice.model.Score;
 import java.time.LocalDateTime;
 import java.util.List;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +18,7 @@ public interface FindScoresByStoreService {
 
   @Getter
   @Setter
+  @AllArgsConstructor
   class Request {
 
     private String storeIdentifier;

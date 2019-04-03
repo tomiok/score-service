@@ -1,10 +1,17 @@
 package com.pya.scoreservice.web;
 
+import static java.util.stream.Collectors.toList;
+import static org.springframework.http.ResponseEntity.noContent;
+import static org.springframework.http.ResponseEntity.ok;
+
 import com.pya.scoreservice.model.Points;
+import com.pya.scoreservice.model.Score;
 import com.pya.scoreservice.usecase.delete.DeleteScoreService;
 import com.pya.scoreservice.usecase.find.FindScoreBySaleService;
 import com.pya.scoreservice.usecase.find.FindScoresByStoreService;
 import com.pya.scoreservice.usecase.save.SaveScoreService;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,37 +50,48 @@ public class ScoreController {
 
   @PostMapping
   public ResponseEntity<ScoreSummary> saveScore(@RequestBody SaveScoreHttpCommand cmd) {
-    saveScoreService.save(new SaveScoreService.Request(
+    Score score = saveScoreService.save(new SaveScoreService.Request(
         cmd.getUserIdentifier(),
         cmd.getStoreIdentifier(),
         cmd.getSaleIdentifier(),
         cmd.getComment(),
         Points.create(cmd.getPoints())
     ));
-    return null;
+
+    return ok(ScoreSummary.fromModel(score));
   }
 
   @DeleteMapping("/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public ResponseEntity<Void> deleteScore(@PathVariable("id") String scoreId) {
-
-    return null;
+    deleteScoreService.deleteById(new DeleteScoreService.Request(scoreId));
+    return noContent().build();
   }
 
   @GetMapping
   @RequestMapping(params = "saleIdentifier")
-  public ResponseEntity<ScoreSummary> findBySaleId(@RequestParam("saleIdentifier") String saleId) {
-
-    return null;
+  public ResponseEntity<ScoreSummary> findBySaleId(@RequestParam("saleIdentifier") String saleIdentifier) {
+    Score score = findScoreBySaleService.findScoreBySale(new FindScoreBySaleService.Request(saleIdentifier));
+    return ok(ScoreSummary.fromModel(score));
   }
 
   @GetMapping
   @RequestMapping(params = { "saleIdentifier", "timeFrom", "timeTo" })
   public ResponseEntity<List<ScoreSummary>> findByStoreIdInRange(
-      @RequestParam("saleIdentifier") String saleId,
+      @RequestParam("saleIdentifier") String saleIdentifier,
       @RequestParam("timeFrom") long from,
       @RequestParam("timeTo") long to) {
+    List<Score> scores = findScoresByStoreService
+        .findScoresByStoreInRange(new FindScoresByStoreService.Request(
+            saleIdentifier,
+            Instant.ofEpochMilli(from).atZone(ZoneId.systemDefault()).toLocalDateTime(),
+            Instant.ofEpochMilli(to).atZone(ZoneId.systemDefault()).toLocalDateTime()
+        ));
+    List<ScoreSummary> summaries = scores
+        .stream()
+        .map(ScoreSummary::fromModel)
+        .collect(toList());
 
-    return null;
+    return ok(summaries);
   }
 }

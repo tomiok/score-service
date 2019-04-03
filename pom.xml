@@ -19,6 +19,7 @@
 		<spring-cloud.version>Greenwich.SR1</spring-cloud.version>
         <apache-commons.version>3.8.1</apache-commons.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <springfox-swagger.version>2.9.2</springfox-swagger.version>
 	</properties>
 
 	<dependencies>
@@ -43,6 +44,19 @@
             <version>${apache-commons.version}</version>
         </dependency>
 
+        <!-- swagger -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox-swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox-swagger.version}</version>
+        </dependency>
+
+        <!-- test and utilities -->
         <dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
