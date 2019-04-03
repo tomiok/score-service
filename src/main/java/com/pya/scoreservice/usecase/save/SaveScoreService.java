@@ -5,7 +5,7 @@ import com.pya.scoreservice.model.Score;
 import lombok.Getter;
 import lombok.Setter;
 
-public interface SaveScore {
+public interface SaveScoreService {
 
   /**
    * Save a {@link Score} in the database.
@@ -23,7 +23,7 @@ public interface SaveScore {
     private String userIdentifier;
     private String storeIdentifier;
     private String saleIdentifier;
-    private String opinion;
+    private String comment;
     private Points points;
 
   }

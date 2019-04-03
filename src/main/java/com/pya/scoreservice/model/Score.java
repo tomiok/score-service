@@ -39,9 +39,9 @@ public class Score {
   private boolean active;
 
   /**
-   * Opinion is free text - Empty opinion is allowed.
+   * Comment is free text - Empty opinion is allowed.
    */
-  private String opinion;
+  private String comment;
 
   private Points points;
 
@@ -52,14 +52,14 @@ public class Score {
       final String userIdentifier,
       final String saleIdentifier,
       final String storeIdentifier,
-      final String opinion,
+      final String comment,
       final Points points) {
     this.uuid = UUID.randomUUID().toString();
     this.createdAt = LocalDateTime.now();
     this.userIdentifier = userIdentifier;
     this.saleIdentifier = saleIdentifier;
     this.storeIdentifier = storeIdentifier;
-    this.opinion = opinion;
+    this.comment = comment;
     this.points = points;
     this.active = true;
   }

@@ -3,11 +3,11 @@ package com.pya.scoreservice.usecase.delete;
 import com.pya.scoreservice.model.Score;
 import com.pya.scoreservice.model.ScoreRepository;
 
-public class DeleteScoreImpl implements DeleteScore {
+public class DeleteScoreServiceImpl implements DeleteScoreService {
 
   private final ScoreRepository scoreRepository;
 
-  public DeleteScoreImpl(final ScoreRepository scoreRepository) {
+  public DeleteScoreServiceImpl(final ScoreRepository scoreRepository) {
     this.scoreRepository = scoreRepository;
   }
 

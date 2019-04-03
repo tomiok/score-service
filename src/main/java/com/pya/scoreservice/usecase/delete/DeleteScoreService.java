@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-public interface DeleteScore {
+public interface DeleteScoreService {
 
   /**
    * Logic delete for the {@link Score} - put the flag {@link Score#active} to false.
