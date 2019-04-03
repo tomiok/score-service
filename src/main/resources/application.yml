@@ -1,0 +1,17 @@
+spring:
+  main:
+    banner-mode: "off"
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      INDENT_OUTPUT: true
+  data:
+    mongodb:
+      database: score-service
+server:
+  port: 8080
+  compression:
+    enabled: true
+logging:
+  level:
+    org.springframework.data.*: DEBUG
