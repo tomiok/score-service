@@ -2,6 +2,7 @@ package com.pya.scoreservice.usecase.save;
 
 import com.pya.scoreservice.model.Points;
 import com.pya.scoreservice.model.Score;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +19,7 @@ public interface SaveScoreService {
 
   @Getter
   @Setter
+  @AllArgsConstructor
   class Request {
 
     private String userIdentifier;

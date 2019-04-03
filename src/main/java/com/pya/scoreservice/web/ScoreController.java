@@ -1,5 +1,6 @@
 package com.pya.scoreservice.web;
 
+import com.pya.scoreservice.model.Points;
 import com.pya.scoreservice.usecase.delete.DeleteScoreService;
 import com.pya.scoreservice.usecase.find.FindScoreBySaleService;
 import com.pya.scoreservice.usecase.find.FindScoresByStoreService;
@@ -42,7 +43,13 @@ public class ScoreController {
 
   @PostMapping
   public ResponseEntity<ScoreSummary> saveScore(@RequestBody SaveScoreHttpCommand cmd) {
-
+    saveScoreService.save(new SaveScoreService.Request(
+        cmd.getUserIdentifier(),
+        cmd.getStoreIdentifier(),
+        cmd.getSaleIdentifier(),
+        cmd.getComment(),
+        Points.create(cmd.getPoints())
+    ));
     return null;
   }
 
@@ -54,16 +61,16 @@ public class ScoreController {
   }
 
   @GetMapping
-  @RequestMapping(params = "saleId")
-  public ResponseEntity<ScoreSummary> findBySaleId(@RequestParam("saleId") String saleId) {
+  @RequestMapping(params = "saleIdentifier")
+  public ResponseEntity<ScoreSummary> findBySaleId(@RequestParam("saleIdentifier") String saleId) {
 
     return null;
   }
 
   @GetMapping
-  @RequestMapping(params = { "saleId", "timeFrom", "timeTo" })
+  @RequestMapping(params = { "saleIdentifier", "timeFrom", "timeTo" })
   public ResponseEntity<List<ScoreSummary>> findByStoreIdInRange(
-      @RequestParam("saleId") String saleId,
+      @RequestParam("saleIdentifier") String saleId,
       @RequestParam("timeFrom") long from,
       @RequestParam("timeTo") long to) {
 

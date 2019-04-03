@@ -9,7 +9,7 @@ import lombok.Setter;
 public interface FindScoresByStoreService {
 
   /**
-   * @param request The store id and the dates in range.
+   * @param request The store identifier and the dates in range.
    *
    * @return A list of the scores in that range for that store identifier.
    */
@@ -19,7 +19,7 @@ public interface FindScoresByStoreService {
   @Setter
   class Request {
 
-    private String storeId;
+    private String storeIdentifier;
 
     private LocalDateTime commentedAtFrom;
 

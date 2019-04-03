@@ -14,9 +14,9 @@ public class FindBySaleServiceImpl implements FindScoreBySaleService {
   @Override
   public Score findScoreBySale(final Request request) {
     return scoreRepository
-        .findBySaleIdentifier(request.getSaleId())
+        .findBySaleIdentifier(request.getSaleIdentifier())
         .orElseThrow(
-            () -> new IllegalArgumentException("The score with sale id " + request.getSaleId() + " does not exists.")
+            () -> new IllegalArgumentException("The score with sale id " + request.getSaleIdentifier() + " does not exists.")
         );
   }
 }

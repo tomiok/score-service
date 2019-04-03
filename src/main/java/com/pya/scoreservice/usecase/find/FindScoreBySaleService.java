@@ -10,7 +10,7 @@ public interface FindScoreBySaleService {
   /**
    * Find a Score given a sale id. Only one opinion can be sent within a sale.
    *
-   * @param request The sale id to fetch the opinion.
+   * @param request The sale identifier to fetch the opinion.
    *
    * @return The {@link Score} with that sale identifier.
    */
@@ -21,6 +21,6 @@ public interface FindScoreBySaleService {
   @AllArgsConstructor
   class Request {
 
-    private String saleId;
+    private String saleIdentifier;
   }
 }

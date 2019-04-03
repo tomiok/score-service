@@ -15,7 +15,7 @@ public class FindByStoreServiceImpl implements FindScoresByStoreService {
   @Override
   public List<Score> findScoresByStoreInRange(final Request request) {
     return scoreRepository.findByStoreIdentifierAndCreatedAtBetween(
-        request.getStoreId(),
+        request.getStoreIdentifier(),
         request.getCommentedAtFrom(),
         request.getCommentedAtTo()
     );

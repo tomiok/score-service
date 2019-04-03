@@ -19,13 +19,15 @@ final class ScoreSummary {
 
   private LocalDateTime updatedAt;
 
-  private String storeId;
+  private String storeIdentifier;
 
-  private String userId;
+  private String userIdentifier;
 
-  private String saleId;
+  private String saleIdentifier;
 
   private int points;
+
+  private String comment;
 
   static ScoreSummary fromModel(final Score score) {
     return new ScoreSummary(
@@ -36,7 +38,8 @@ final class ScoreSummary {
         score.getStoreIdentifier(),
         score.getUserIdentifier(),
         score.getSaleIdentifier(),
-        score.getPoints().getPoint()
+        score.getPoints().getPoint(),
+        score.getComment()
     );
   }
 }

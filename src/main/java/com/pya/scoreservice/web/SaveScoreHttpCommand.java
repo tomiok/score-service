@@ -7,13 +7,13 @@ import lombok.Setter;
 @Setter
 final class SaveScoreHttpCommand {
 
-  private long createdAt;
+  private String storeIdentifier;
 
-  private String storeId;
+  private String userIdentifier;
 
-  private String userId;
-
-  private String saleId;
+  private String saleIdentifier;
 
   private int points;
+
+  private String comment;
 }
