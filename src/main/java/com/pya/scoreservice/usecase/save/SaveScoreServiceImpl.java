@@ -7,7 +7,7 @@ public class SaveScoreServiceImpl implements SaveScoreService {
 
   private final ScoreRepository scoreRepository;
 
-  public SaveScoreServiceImpl(final ScoreRepository scoreRepository) {
+  SaveScoreServiceImpl(final ScoreRepository scoreRepository) {
     this.scoreRepository = scoreRepository;
   }
 

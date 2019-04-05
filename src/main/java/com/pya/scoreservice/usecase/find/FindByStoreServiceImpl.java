@@ -8,7 +8,7 @@ public class FindByStoreServiceImpl implements FindScoresByStoreService {
 
   private final ScoreRepository scoreRepository;
 
-  public FindByStoreServiceImpl(final ScoreRepository scoreRepository) {
+  FindByStoreServiceImpl(final ScoreRepository scoreRepository) {
     this.scoreRepository = scoreRepository;
   }
 
