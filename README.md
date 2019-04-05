@@ -58,10 +58,15 @@ curl -X GET \
   -H 'cache-control: no-cache'
 ```
 
-### Find by user and date range
+### Find by store and date range
 
 ```
 curl -X GET \
   'http://localhost:8080/scores?storeIdentifier=storeUUIDhere&timeFrom=0&timeTo=1554442585877' \
   -H 'cache-control: no-cache'
 ```
+
+
+## About the APIs
+
+The APIs that return a List of objects (like Find by store and date range) should handle default values for time from and time to, and sould be paginated. Omitted in this POC.
