@@ -1,6 +1,10 @@
 package com.pya.scoreservice.usecase.save;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import com.pya.scoreservice.TestFixtures;
 import com.pya.scoreservice.model.Points;
@@ -9,10 +13,8 @@ import com.pya.scoreservice.model.ScoreRepository;
 import java.util.UUID;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -43,7 +45,7 @@ public class SaveScoreServiceImplTest {
         request.getPoints());
 
     saved.setId("uniqueId");
-    Mockito.when(scoreRepository.save(ArgumentMatchers.any(Score.class))).thenReturn(saved);
+    when(scoreRepository.save(any(Score.class))).thenReturn(saved);
 
     Score actual = saveScoreService.save(request);
 
@@ -51,5 +53,7 @@ public class SaveScoreServiceImplTest {
     assertThat(actual.getUuid()).isNotEmpty();
     assertThat(actual.getUpdatedAt()).isNull();
     assertThat(actual.getComment()).isEqualTo(comment);
+
+    verify(scoreRepository, times(1)).save(any(Score.class));
   }
 }
