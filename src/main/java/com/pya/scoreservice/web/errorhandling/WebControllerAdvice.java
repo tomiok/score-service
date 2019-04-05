@@ -1,5 +1,6 @@
 package com.pya.scoreservice.web.errorhandling;
 
+import com.mongodb.MongoWriteException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +21,11 @@ public class WebControllerAdvice {
   @ExceptionHandler({ NullPointerException.class })
   public ResponseEntity<?> handleNullPointerException(final Throwable throwable, final ServletWebRequest req) {
     return create(HttpStatus.INTERNAL_SERVER_ERROR, throwable.getMessage(), req.getRequest().getRequestURI());
+  }
+
+  @ExceptionHandler({ MongoWriteException.class })
+  public ResponseEntity<?> handleDuplicatesEntries(final Throwable throwable, final ServletWebRequest req) {
+    return create(HttpStatus.BAD_REQUEST, throwable.getMessage(), req.getRequest().getRequestURI());
   }
 
   private ResponseEntity<ErrorDto> create(HttpStatus status, String msg, String req) {

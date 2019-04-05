@@ -1,6 +1,7 @@
 package com.pya.scoreservice.web;
 
 import static java.util.stream.Collectors.toList;
+import static org.springframework.http.ResponseEntity.created;
 import static org.springframework.http.ResponseEntity.noContent;
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -58,7 +59,7 @@ public class ScoreController {
         Points.create(cmd.getPoints())
     ));
 
-    return ok(ScoreSummary.fromModel(score));
+    return ResponseEntity.status(201).body(ScoreSummary.fromModel(score));
   }
 
   @DeleteMapping("/{id}")
@@ -76,14 +77,14 @@ public class ScoreController {
   }
 
   @GetMapping
-  @RequestMapping(params = { "saleIdentifier", "timeFrom", "timeTo" })
+  @RequestMapping(params = { "storeIdentifier", "timeFrom", "timeTo" })
   public ResponseEntity<List<ScoreSummary>> findByStoreIdInRange(
-      @RequestParam("saleIdentifier") String saleIdentifier,
+      @RequestParam("storeIdentifier") String storeIdentifier,
       @RequestParam("timeFrom") long from,
       @RequestParam("timeTo") long to) {
     List<Score> scores = findScoresByStoreService
         .findScoresByStoreInRange(new FindScoresByStoreService.Request(
-            saleIdentifier,
+            storeIdentifier,
             Instant.ofEpochMilli(from).atZone(ZoneId.systemDefault()).toLocalDateTime(),
             Instant.ofEpochMilli(to).atZone(ZoneId.systemDefault()).toLocalDateTime()
         ));
