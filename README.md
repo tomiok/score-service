@@ -3,7 +3,7 @@ Score service
 
 ## POC Highlights
 
-You need [mongodb](https://www.mongodb.com) installed locally, using the database `score-service-local`. Otherwise you can setting up for free a mongo instance with (mlab)[https://mlab.com] and change the application.yml settings according. Finally, 
+You need [mongodb](https://www.mongodb.com) installed locally, using the database `score-service-local`. Otherwise you can setting up for free a mongo instance with [mlab](https://mlab.com) and change the application.yml settings according. Finally, 
 for another alternative, you can run a docker image for mongo, running this commands:
 
 ```
